@@ -1,0 +1,16 @@
+{
+    "name": "mein-selbst-test",
+    "version": "1.0.0",
+    "descrption": "",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "flaschenpost": "^5.1.1",
+        "mongodb": "^6.15.0",
+        "processenv": "^3.0.9"
+    },
+    "scripts": {
+        "start-mongodb": "docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=node -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb mongo:latest",
+        "stop-mongodb": "docker kill mongodb && docker rm -v mongodb"
+    }
+}
