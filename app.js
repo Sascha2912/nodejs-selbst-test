@@ -5,6 +5,7 @@ const { flaschenpost } = require('flaschenpost');
 const { getApi } = require('./lib/getApi');
 const http = require('http');
 const { InMemoryStore } = require('./lib/store/InMemoryStore');
+const { MongoDbStore } = require('./lib/store/MongoDbStore');
 const { processenv } = require('processenv');
 
 // AIIFE Asychron Immediately Invoke Function Expression
@@ -13,7 +14,14 @@ const { processenv } = require('processenv');
     // Logger erstellen
     const logger = flaschenpost.getLogger();
     // Store einbinden und initialisieren
-    const store = new InMemoryStore();
+    // const store = new InMemoryStore();
+    const store = new MongoDbStore({
+        hostname: 'localhost',
+        port: 27017,
+        username: 'node',
+        password: 'password',
+        database: 'todos'
+    });
     await store.initialize();
     // Api einbinden
     const api = getApi({ store });
